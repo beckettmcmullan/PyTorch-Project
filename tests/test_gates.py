@@ -5,7 +5,7 @@ import pytest
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "darts"))
-from gates import GATES, apply_gate, gate_and, gate_nand, gate_not, gate_or, gate_xor, truth_table  # noqa: E402
+from gates import GATES, apply_gate, gate_and, gate_nand, gate_nor, gate_not, gate_or, gate_xnor, gate_xor, truth_table  # noqa: E402
 
 EXPECTED = {
     "NOT": [1, 0],
@@ -13,6 +13,8 @@ EXPECTED = {
     "OR": [0, 1, 1, 1],
     "XOR": [0, 1, 1, 0],
     "NAND": [1, 1, 1, 0],
+    "NOR": [1, 0, 0, 0],
+    "XNOR": [1, 0, 0, 1],
 }
 
 
@@ -41,6 +43,8 @@ PARTIALS = {
     gate_or: lambda a, b: (1 - b, 1 - a),
     gate_xor: lambda a, b: (1 - 2 * b, 1 - 2 * a),
     gate_nand: lambda a, b: (-b, -a),
+    gate_nor: lambda a, b: (b - 1, a - 1),
+    gate_xnor: lambda a, b: (2 * b - 1, 2 * a - 1),
 }
 
 

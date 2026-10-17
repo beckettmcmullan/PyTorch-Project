@@ -35,6 +35,14 @@ def gate_nand(a, b):
     return 1 - a * b
 
 
+def gate_nor(a, b):
+    return (1 - a) * (1 - b)
+
+
+def gate_xnor(a, b):
+    return 1 - a - b + 2 * a * b
+
+
 # name -> (function, number of inputs). NOT is the only unary gate.
 GATES = {
     "NOT": (gate_not, 1),
@@ -42,6 +50,8 @@ GATES = {
     "OR": (gate_or, 2),
     "XOR": (gate_xor, 2),
     "NAND": (gate_nand, 2),
+    "NOR": (gate_nor, 2),
+    "XNOR": (gate_xnor, 2),
 }
 
 
